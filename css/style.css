@@ -1,9 +1,20 @@
 *{
   padding:0;
   margin:0;
+  font-family: 'Ranchers', cursive;
+  text-align: center;
+  background-image: url('https://s3.amazonaws.com/pbblogassets/uploads/2020/03/23001945/Retrowave-Background-Loop-Tutorial-Cover-Image.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: white;
 }
-button{box-shadow: 3px 4px 0px 0px #8a2a21;
-	background:linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
+
+.container{
+  margin-top: 170px;
+}
+button{
+  box-shadow: 3px 4px 0px 0px #8a2a21;
+	background:linear-gradient( #c62d1f 5%, #f24437 100%);
 	background-color:#c62d1f;
 	border-radius:18px;
 	border:1px solid #d02718;
@@ -13,6 +24,11 @@ button{box-shadow: 3px 4px 0px 0px #8a2a21;
 	font-family:Arial;
 	font-size:17px;
 	padding:7px 25px;
-	text-decoration:none;
 	text-shadow:0px 1px 0px #e034c6;
+}
+h1{
+  font-size: 50px;
+}
+p{
+  font-size: 30px;
 }

@@ -6,7 +6,7 @@ const figlet = require('figlet')
 
   const server = http.createServer(function(req, res) {
   const page = url.parse(req.url).pathname;
-  // const params = querystring.parse(url.parse(req.url).query);
+  const params = querystring.parse(url.parse(req.url).query);
   console.log(page);
   if (page == '/') {
     fs.readFile('index.html', function(err, data) {
@@ -17,24 +17,26 @@ const figlet = require('figlet')
     });
   }
     else if (page == '/winner'){
+      let playerResult = parseInt(params.playerResult, 10)
+      console.log("player",playerResult);
       let computerResult= Math.floor(Math.random()*5);
-      if(computerResult === 0 && playerResult ===1 || playerResult === 3) ||
-      (computerResult ===1 && playerResult ===2 || playerResult === 4) ||
-      (computerResult === 2 && playerResult === 3 || playerResult === 0) ||
-      (computerResult === 3 && playerResult ===4 || playerResult === 1) ||
-      (computerResult === 4 && playerResult === 0 || playerResult === 2){
+      console.log('computer',computerResult);
+      if((computerResult === 0 && (playerResult ===1 || playerResult === 3)) ||
+      (computerResult ===1 && (playerResult ===2 || playerResult === 4)) ||
+      (computerResult === 2 && (playerResult === 3 || playerResult === 0)) ||
+      (computerResult === 3 && (playerResult ===4 || playerResult === 1)) ||
+      (computerResult === 4 && (playerResult === 0 || playerResult === 2))){
         result = false
-      }else if(playerResult === 0 && computerResult ===1 || computerResult === 3) ||
-      (playerResult === 0 && computerResult ===1 || computerResult === 3) ||
-      (playerResult ===1 && computerResult ===2 || computerResult === 4) ||
-      (playerResult === 2 && computerResult === 3 || computerResult === 0) ||
-      (playerResult === 3 && playerResult ===4 || computerResult === 1) ||
-      (playerResult === 4 && computerResult === 0 || computerResult === 2){
+      }else if((playerResult === 0 && computerResult ===1 || computerResult === 3) ||
+      (playerResult === 0 && (computerResult ===1 || computerResult === 3)) ||
+      (playerResult ===1 && (computerResult ===2 || computerResult === 4)) ||
+      (playerResult === 2 && (computerResult === 3 || computerResult === 0)) ||
+      (playerResult === 3 && (playerResult ===4 || computerResult === 1)) ||
+      (playerResult === 4 && (computerResult === 0 || computerResult === 2))){
         result = true;
       }
-    }      res.writeHead(200, {'Content-Type': 'text/html'});
+      res.writeHead(200, {'Content-Type': 'text/html'});
       res.end(JSON.stringify(result));
-    }
   }
   else if (page == '/css/style.css'){
     fs.readFile('css/style.css', function(err, data) {
@@ -124,9 +126,9 @@ server.listen(8000);
 
 
 
-game();
-if ('pal' in params){
-   const pal = params ['pal'];
+// game();
+// if ('pal' in params){
+//    const pal = params ['pal'];
 // const http = require('http');
 // const fs = require('fs')
 // const url = require('url');

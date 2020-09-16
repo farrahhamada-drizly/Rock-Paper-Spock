@@ -6,20 +6,20 @@ let scissors = document.getElementById('scissors');
 let lizard = document.getElementById('lizard');
 let spock = document.getElementById('spock');
 let button = document.querySelectorAll('button')
-let userChoice;
-let botChoice;
 
-function findWinner() {
-  fetch(`/winner?pal=${input}`)
-  .then(response => response.json())
+
+
+function findWinner(playerResult) {
+  fetch(`/winner?playerResult=${playerResult}`)
+    .then(response => response.json())
     .then((result) =>{
       console.log(result)
       if(result === false){
-        answer.innerHTML = (`You lose`);
+        document.getElementById('answer').innerHTML ='You lose!';
      } else if (result === true){
-       answer.innerHTML = (`You win!`);
+       document.getElementById('answer').innerHTML = 'You win!';
       }
-      document.getElementById('answer').innerHTML = ""
+      console.log("work")
    })
 }
 // if statement with innerHTML allows to display in DOM
@@ -28,6 +28,7 @@ function findWinner() {
 // });
 button.forEach((btn) => {
   btn.addEventListener("click", (event) => {
-    console.log("button works");
+    let playerResult = event.target.value;
+    findWinner(playerResult);
   });
 });
